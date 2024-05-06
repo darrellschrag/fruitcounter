@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fruit-counter
+  labels:
+    app: fruit-counter
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fruit-counter
+  template:
+    metadata:
+      labels:
+        app: fruit-counter
+    spec:
+      serviceAccountName: drs-service-account
+      containers:
+      - name: fruit-counter
+        image: us.icr.io/drsns/fruit-counter:15
+        ports:
+        - containerPort: 8080
+        env:
+          - name: CLOUDANT_URL
+            value: "https://62bcb280-a451-42e7-b457-cc22ec1cc699-bluemix.cloudantnosqldb.appdomain.cloud/"
+          - name: CLOUDANT_APIKEY
+            valueFrom:
+              secretKeyRef:
+                name: drs-api-key
+                key: API_TOKEN
+          - name: NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+      imagePullSecrets:
+      - name: all-icr-io
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - fruit-counter
+              topologyKey: kubernetes.io/hostname

@@ -1,0 +1,20 @@
+{
+  "name": "fruitcounter",
+  "version": "1.0.0",
+  "description": "Demo web app for IBM Cloud Code Engine & IBM Cloudant",
+  "author": "Daniel Mermelstein (danmermel@gmail.com)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "standard": "standard --fix"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.19.0",
+    "@ibm-cloud/cloudant": "^0.7.2",
+    "body-parser": "^1.20.0",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
+}

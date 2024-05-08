@@ -1,5 +1,5 @@
 # fruitcounter
-This project will illustrate how you can upgrade ROKS will an app is running.
+This project will illustrate how you can upgrade ROKS while an app is running.
 
 Perform the following steps
 1. Create a Cloudant service. The free tier is fine. Save the preferred external endpoint.

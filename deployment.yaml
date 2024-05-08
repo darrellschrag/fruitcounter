@@ -14,7 +14,7 @@ spec:
       labels:
         app: fruit-counter
     spec:
-      serviceAccountName: drs-service-account
+      serviceAccountName: fruitcounter-service-account
       containers:
       - name: fruit-counter
         image: us.icr.io/drsns/fruit-counter:15
@@ -26,7 +26,7 @@ spec:
           - name: CLOUDANT_APIKEY
             valueFrom:
               secretKeyRef:
-                name: drs-api-key
+                name: fruitcounter-api-key
                 key: API_TOKEN
           - name: NODENAME
             valueFrom:

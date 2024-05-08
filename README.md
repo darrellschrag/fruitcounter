@@ -22,7 +22,7 @@ Perform the following steps
 6. Modify deployment.yaml to specify the name of your image AND your specific Cloudant external endpoint
 7. Deploy the application <br>
    $kubectl apply -f deployment.yaml
-8. Verify you have 3 pods running successfully
+8. Verify you have 3 pods running successfully <br>
    $kubectl get pods
 9. Expose the application <br>
    $oc expose deploy fruit-counter --port=8080 --target-port=8080 --type=LoadBalancer --name=fruitcounter-lb-svc

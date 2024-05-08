@@ -22,16 +22,18 @@ Perform the following steps
 6. Modify deployment.yaml to specify the name of your image AND your specific Cloudant external endpoint
 7. Deploy the application <br>
    $kubectl apply -f deployment.yaml
-8. Expose the application <br>
-   $oc expose deploy fruit-counter --port=8080 --target-port=8080 --type=LoadBalancer --name fruitcounter-lb-svc
-9. After a bit (DNS assignment) find the external address of the app <br>
+8. Verify you have 3 pods running successfully
+   $kubectl get pods
+9. Expose the application <br>
+   $oc expose deploy fruit-counter --port=8080 --target-port=8080 --type=LoadBalancer --name=fruitcounter-lb-svc
+10. After a bit (DNS assignment) find the external address of the app <br>
    $kubectl get svc fruitcounter-lb-svc
-10. Might have to wait some more time for it to work (DNS propogate), launch the app (do not use https) <br>
+11. Might have to wait some more time for it to work (DNS propogate), launch the app (do not use https) <br>
    http://externaladdress:8080 <br>
    Show the worker node and OCP version of worker node on the result page. Do multiple times to show different workers respond.
-11. edit loop.sh to update your upgrade target OCP version and your app endpoint
-12. run loop.sh. 3 pods should show running on 3 separate workers
-13. while loop is running, upgrade masters to 4.14. Eventually will show upgrade
-14. while loop is running, upgrade a worker. You should see the pod on the worker being upgraded be moved to another worker
-15. When worker is finished upgrading, kill one of the new pod that moved. A new pod should come up on the new worker and show the upgraded worker version.
+12. edit loop.sh to update your upgrade target OCP version and your app endpoint
+13. run loop.sh. 3 pods should show running on 3 separate workers
+14. while loop is running, upgrade masters to 4.14. Eventually will show upgrade
+15. while loop is running, upgrade a worker. You should see the pod on the worker being upgraded be moved to another worker
+16. When worker is finished upgrading, kill one of the new pod that moved. A new pod should come up on the new worker and show the upgraded worker version.
 

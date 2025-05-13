@@ -18,7 +18,7 @@ const DESIGN_DOC = 'fruitCounter'
 
 const { KubeConfig, CoreV1Api } = require('@kubernetes/client-node');
 const { validateHeaderValue } = require('http')
-const NODENAME = process.env.NODENAME
+const NODENAME = String(process.env.NODENAME)
 console.log(`${NODENAME}`)
 async function getOpenShiftVersion(node) {
   try {

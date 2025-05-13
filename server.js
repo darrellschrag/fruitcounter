@@ -88,6 +88,7 @@ const createDesignDoc = async function () {
 
 createDesignDoc()
 var OCPVersion = "drs"
+console.log(`${NODENAME}`)
 getOpenShiftVersion(NODENAME).then((value) => {
    console.log(`${value}`)
    OCPVersion = value

@@ -22,6 +22,7 @@ const NODENAME = String(process.env.NODENAME)
 console.log(`${NODENAME}`)
 async function getOpenShiftVersion(node) {
   try {
+      console.log(node)
       // Load kubeconfig from the default location
       const kubeconfig = new KubeConfig();
       kubeconfig.loadFromCluster();
@@ -88,7 +89,6 @@ const createDesignDoc = async function () {
 
 createDesignDoc()
 var OCPVersion = "drs"
-console.log(`${NODENAME}`)
 getOpenShiftVersion(NODENAME).then((value) => {
    console.log(`${value}`)
    OCPVersion = value

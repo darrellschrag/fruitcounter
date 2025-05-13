@@ -22,7 +22,7 @@ const NODENAME = String(process.env.NODENAME)
 console.log(`${NODENAME}`)
 async function getOpenShiftVersion(node) {
   try {
-      console.log(node)
+      console.log("node = " + node)
       // Load kubeconfig from the default location
       const kubeconfig = new KubeConfig();
       kubeconfig.loadFromCluster();

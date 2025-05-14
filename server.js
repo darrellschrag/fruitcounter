@@ -31,7 +31,7 @@ async function getOpenShiftVersion(node) {
       const k8sCoreApi = kubeconfig.makeApiClient(CoreV1Api);
 
       // Get the node information
-      const thenode = await k8sCoreApi.readNode(node);
+      const thenode = await k8sCoreApi.readNode({ node });
       const labels = thenode.body.metadata.labels;
       if (labels && labels["ibm-cloud.kubernetes.io/worker-version"]) {
         return labels["ibm-cloud.kubernetes.io/worker-version"]

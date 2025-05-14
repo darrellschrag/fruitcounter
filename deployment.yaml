@@ -17,7 +17,7 @@ spec:
       serviceAccountName: fruitcounter-service-account
       containers:
       - name: fruit-counter
-        image: us.icr.io/drsns/fruit-counter:26
+        image: us.icr.io/drsns/fruit-counter:27
         ports:
         - containerPort: 8080
         env:

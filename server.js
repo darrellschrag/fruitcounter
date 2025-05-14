@@ -20,10 +20,9 @@ const { KubeConfig, CoreV1Api } = require('@kubernetes/client-node');
 const { validateHeaderValue } = require('http')
 const NODENAME = String(process.env.NODENAME)
 console.log(`${NODENAME}`)
-async function getOpenShiftVersion(node) {
+const getOpenShiftVersion = async function () {
   try {
-      console.log("node = " + node)
-      // Load kubeconfig from the default location
+      // Load kubeconfig from the cluster
       const kubeconfig = new KubeConfig();
       kubeconfig.loadFromCluster();
 
@@ -31,7 +30,7 @@ async function getOpenShiftVersion(node) {
       const k8sCoreApi = kubeconfig.makeApiClient(CoreV1Api);
 
       // Get the node information
-      const thenode = await k8sCoreApi.readNode({ node });
+      const thenode = await k8sCoreApi.readNode(NODENAME);
       const labels = thenode.body.metadata.labels;
       if (labels && labels["ibm-cloud.kubernetes.io/worker-version"]) {
         return labels["ibm-cloud.kubernetes.io/worker-version"]
@@ -89,7 +88,7 @@ const createDesignDoc = async function () {
 
 createDesignDoc()
 var OCPVersion = "drs"
-getOpenShiftVersion(NODENAME).then((value) => {
+getOpenShiftVersion().then((value) => {
    console.log(`${value}`)
    OCPVersion = value
 })
